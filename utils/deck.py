@@ -1,3 +1,4 @@
+from random import randrange
 
 #=====================================
 #  validate_create_card_input_number
@@ -49,16 +50,9 @@ def compare_cards(p1_card:dict, p2_card:dict) -> str:
     return "WAR"
 
 
-
-
 #=====================================
 #              create deck
 #=====================================
-
-def possible_values():
-
-    return
-
 def create_deck() -> list[dict]:
 
     ranks =  ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
@@ -73,23 +67,38 @@ def create_deck() -> list[dict]:
     return cards
 
 
+#=====================================
+#             handle swap
+#=====================================
+def handle_swap(index1, index2, deck):
+
+    #this will not swap if the indexes are equal
+    if index1 == index2:
+        return
+
+    #this will swap between the two indexes
+    deck[index1], deck[index2] = deck[index2], deck[index1]
 
 
+#=====================================
+#             shuffle
+#=====================================
 def shuffle(deck:list[dict]) -> list[dict]:
-    pass
+    """this function manages the card shuffling"""
+
+    for i in range(0, 1000):
+        index1 = randrange(0, 52)
+        index2 = randrange(0, 52)
+        handle_swap(index1, index2, deck)
+
+    return deck
 
 
-p1 = create_card("3", "C")
-p2 = create_card("6", "C")
 
-print(create_deck())
 
-print(p1)
-print(p2)
 
-print({"value": 14}, {"value": 10})
-print(compare_cards({"value": 9}, {"value": 13}))
-print(compare_cards({"value": 5}, {"value": 5}))
+
+
 
 
 
